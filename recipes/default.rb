@@ -9,10 +9,12 @@
 # this will create the directory for the machine.
 directory "usr/local/fabric8" do 
 	mode "0777"
+	recursive true
 end
 
 # then it will have to unzip it because RPM's don't exist yet and I haven't figured out ark yet.
 execute "unzip_file" do 
+	user "vagrant"
 	cwd "/vagrant/binaries" 
 	command "tar -xzvf fabric8-karaf-1.0.0.redhat-362.tar.gz -C /usr/local/fabric8" 
 	action :run
